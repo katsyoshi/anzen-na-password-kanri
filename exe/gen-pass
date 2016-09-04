@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require 'anzen-na-password-kanri'
+
+Option = Struct.new(:num, :type, :service)
+option = Option.new
+option.type = :full
+OptParse.new do |opt|
+  opt.on('-n VALUE', '--num'){|v| option.num = v.to_i }
+  opt.on('-t [VALUE]', '--type'){|v| option.type = v.to_sym }
+
+  opt.parse(ARGV)
+end
+
+puts Anzen::Na::Password::Kanri.generate(num: option.num, type: option.type)
