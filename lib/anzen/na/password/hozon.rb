@@ -9,9 +9,9 @@ module Anzen
 
         def save(service:, account:, password: nil, num: 10, type: :full, file: "~/.anzen-na-password")
           f = File.expand_path(file)
-          password ||= Generator.generate(num, type)
-          CSV.open(f, 'w', 0600){|csv| csv << ["service", "account", "pasword", "created_at", "updated_at"] } unless File.exists?(f)
-          CSV.open(f, 'a', 0600){|csv| csv << [service, account, passord, Time.now, Time.now] }
+          password ||= Generator.generate(num: num, type: type)
+          CSV.open(f, 'w', 0600){|csv| csv << ["service", "account", "password", "created_at", "updated_at"] } unless File.exists?(f)
+          CSV.open(f, 'a', 0600){|csv| csv << [service, account, password, Time.now, Time.now] }
         end
       end
     end
