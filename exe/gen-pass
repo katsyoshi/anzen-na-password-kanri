@@ -12,4 +12,4 @@ OptParse.new do |opt|
   opt.parse(ARGV)
 end
 
-puts Anzen::Na::Password::Kanri.generate(num: option.num, type: option.type)
+puts Anzen::Na::Password::Generator.generate(num: option.num, type: option.type)

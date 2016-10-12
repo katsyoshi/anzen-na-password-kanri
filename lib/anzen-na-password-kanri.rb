@@ -1,1 +1,1 @@
-require 'anzen/na/password/kanri'
+require "anzen/na/password/generator"
