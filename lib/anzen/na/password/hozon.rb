@@ -12,6 +12,7 @@ module Anzen
           password ||= Generator.generate(num: num, type: type)
           CSV.open(f, 'w', 0600){|csv| csv << ["service", "account", "password", "created_at", "updated_at"] } unless File.exists?(f)
           CSV.open(f, 'a', 0600){|csv| csv << [service, account, password, Time.now, Time.now] }
+          {service: service, account: account, password: password}
         end
       end
     end

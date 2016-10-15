@@ -16,8 +16,10 @@ OptParse.new do |opt|
 end
 
 config = {}
-config = YAML.load(option.yaml) if option.yaml && File.exists?(File.expand_path(option.yaml))
-config = JSON.parse(option.json) if option.json && File.exists?(File.expand_path(option.json))
+file_path = File.expand_path(option.yaml || option.json)
+file = File.open(file_path) if File.exist?(file_path)
+config = YAML.load(file) if option.yaml
+config = JSON.load(file) if option.json
 option.num ||= config["num"] || 10
 option.type ||= config["type"] || :full
 option.file ||= config["file"] || "~/.anzen-na-password-kanri"
@@ -25,4 +27,5 @@ opt = option.to_h
 opt.delete(:yaml)
 opt.delete(:json)
 
-Anzen::Na::Password::Hozon.save(opt)
+Anzen::Na::Password::Hozon.save(opt).each{|k, v| puts "#{k}: #{v}" }
+
