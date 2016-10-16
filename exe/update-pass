@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+require "anzen-na-password-kanri"
+
+Option = Struct.new(:service, :account, :num, :type, :file, :yaml, :json)
+option = Option.new
+OptParse.new do |opt|
+  opt.on("-s VALUE", "--service"){|v| option.service = v }
+  opt.on("-a VALUE", "--account"){|v| option.account = v }
+  opt.on("-n [VALUE]", "--num"){|v| option.num = v.to_i }
+  opt.on("-t [VALUE]", "--type"){|v| option.type = v.to_sym }
+  opt.on("-f [VALUE]", "--file"){|v| option.file = v.to_f }
+  opt.on("-y [VALUE]", "--yaml"){|v| option.yaml = v }
+  opt.on("-j [VALUE]", "--json"){|v| option.json = v }
+
+  opt.parse(ARGV)
+end
+
+config = {}
+file_path = File.expand_path(option.yaml || option.json)
+file = File.open(file_path) if File.exist?(file_path)
+config = YAML.load(file) if option.yaml
+config = JSON.load(file) if option.json
+option.num ||= config["num"] || 10
+option.type ||= config["type"] || :full
+option.file ||= config["file"] || "~/.anzen-na-password-kanri"
+opt = option.to_h
+opt.delete(:yaml)
+opt.delete(:json)
+
+Anzen::Na::Password::Hozon.update(opt).each{|k,v| puts "#{k}: #{v}" }
