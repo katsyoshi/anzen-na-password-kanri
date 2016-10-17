@@ -33,7 +33,7 @@ module Anzen
           CSV.open(f, 'w', 0600) do |csv|
             c.each{|row| csv << row }
           end
-          Hash[c[0].zip(ret)]
+          Hash[c[0][0..2].zip(ret[0..2])]
         end
 
         def header
