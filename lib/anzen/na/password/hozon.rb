@@ -22,7 +22,7 @@ module Anzen
           CSV.open(f, 'r', 0600) do |csv|
             c = csv.map do |row|
               if row[0] == service && row[1] == account
-                row[2] = password || Generator.generate(num: num, type: :full)
+                row[2] = password || Generator.generate(num: num, type: type)
                 row[-1] = Time.now
                 ret = row
               end
