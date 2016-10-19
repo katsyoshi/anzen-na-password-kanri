@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'anzen-na-password-kanri'
+gem 'anzen-na-password-kanri', github: 'katsyoshi/anzen-na-password-kanri'
 ```
 
 And then execute:
@@ -18,11 +18,17 @@ And then execute:
 
 Or install it yourself as:
 
+    $ rake install
     $ gem install anzen-na-password-kanri
 
 ## Usage
 
-TODO: Write usage instructions here
+* generate password
+
+```
+$ bundle exec bin/gen-pass -n 30
+66IeVL9whrmDgt#qMzG)^ejagLmw+3~
+```
 
 ## Development
 
