@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require "anzen-na-password-kanri"
+
+Option = Struct.new(:password, :user_inputs)
+option = Option.new
+option.user_inputs = []
+OptParse.new do |opt|
+  opt.on("-p VALUE", "--password"){|v| option.password = v }
+  opt.on("-u [VALUE]", "--user-input"){|v| option.user_inputs = v.to_s.split(/,/) }
+  opt.parse(ARGV)
+end
+
+result = Anzen::Na::Password::Kyodo.sokutei(option.password, user_inputs: option.user_inputs)
+
+puts "password: #{option.password}"
+puts "score: #{result.score}"
+puts "crack time: #{result.crack_time_display}"
