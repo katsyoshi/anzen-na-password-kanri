@@ -4,4 +4,4 @@ require "yaml"
 require "zxcvbn"
 require "anzen/na/password/generator"
 require "anzen/na/password/hozon"
-
+require "anzen/na/password/kyodo"
