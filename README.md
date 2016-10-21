@@ -18,16 +18,24 @@ And then execute:
 
 Or install it yourself as:
 
-    $ rake install
-    $ gem install anzen-na-password-kanri
+    $ rake build
+    $ gem install pkg/anzen-na-password-kanri-0.1.0.gem
 
 ## Usage
 
 * generate password
 
 ```
-$ bundle exec bin/gen-pass -n 30
+$ bundle exec exe/gen-pass -n 30
 66IeVL9whrmDgt#qMzG)^ejagLmw+3~
+```
+
+* check your password strength
+```
+$ bundle exec exe/test-pass -p y0urP@ssw0Rd
+password: y0urP@ssw0Rd
+score: 0
+crack time: instant
 ```
 
 ## Development
@@ -38,5 +46,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/anzen-na-password-kanri.
+Bug reports and pull requests are welcome on GitHub at https://github.com/katsyoshi/anzen-na-password-kanri.
 
