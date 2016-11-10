@@ -4,12 +4,21 @@ require "anzen-na-password-kanri"
 Option = Struct.new(:num, :type, :service, :password, :file, :yaml, :json, :user_inputs)
 option = Option.new
 option.type = :full
-subparts = {}
+
+subparts = Hash.new do |_h, k|
+  STDERR.puts "no such subcommand: #{k}"
+  %w<gen test save >.each do |subcommand|
+    STDERR.puts subparts[subcommand]
+  end
+  exit 1
+end
 file_path = nil
 
 subparts["gen"] = OptParse.new do |opt|
   opt.on("-n VALUE", "--num"){|v| option.num = v.to_i }
   opt.on("-t [VALUE]", "--type"){|v| option.type = v.to_sym }
+
+  opt.banner = "Usage: anzen gen [options]"
 end
 
 subparts["save"] = OptParse.new do |opt|
@@ -20,11 +29,15 @@ subparts["save"] = OptParse.new do |opt|
   opt.on("-f [VALUE]", "--file"){|v| option.file = v.to_f }
   opt.on("-y [VALUE]", "--yaml"){|v| option.yaml = v }
   opt.on("-j [VALUE]", "--json"){|v| option.json = v }
+
+  opt.banner = "Usage: anzen save [options]"
 end
 
 subparts["test"] = OptParse.new do |opt|
   opt.on("-p VALUE", "--password"){|v| option.password = v }
   opt.on("-u [VALUE]", "--user-input"){|v| option.user_inputs = v.to_s.split(/,/) }
+
+  opt.banner = "Usage: anzen test [options]"
 end
 
 subparts["update"] = OptParse.new do |opt|
@@ -35,6 +48,8 @@ subparts["update"] = OptParse.new do |opt|
   opt.on("-f [VALUE]", "--file"){|v| option.file = v.to_f }
   opt.on("-y [VALUE]", "--yaml"){|v| option.yaml = v }
   opt.on("-j [VALUE]", "--json"){|v| option.json = v }
+
+  opt.banner = "Usage: anzen update [options]"
 end
 
 command = ARGV.shift
