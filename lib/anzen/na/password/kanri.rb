@@ -11,15 +11,16 @@ module Anzen
           when :gen
             opt.delete(:file)
             puts Anzen::Na::Password::Generator.generate(opt)
-          when :save
+          when :hozon
             Anzen::Na::Password::Hozon.save(opt).each{|k, v| puts "#{k}: #{v}" }
-          when :test
+          when :kensa
             opt.delete(:file)
-            result = Anzen::Na::Password::Kyodo.sokutei(opt["password"], user_inputs: opt["user_inputs"])
-            puts "password: #{option.password}"
+            raise if opt[:password].nil?
+            result = Anzen::Na::Password::Kyodo.sokutei(opt[:password], user_inputs: [opt[:user_inputs]].flatten)
+            puts "password: #{opt[:password]}"
             puts "score: #{result.score}"
             puts "crack time: #{result.crack_time_display}"
-          when :update
+          when :koshin
             Anzen::Na::Password::Hozon.save(opt).each{|k, v| puts "#{k}: #{v}" }
           end
         end
