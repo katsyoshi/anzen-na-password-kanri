@@ -46,11 +46,12 @@ if option.yaml || option.json
   file = File.open(file_path) if File.exist?(file_path)
   config = YAML.load(file) if option.yaml
   config = JSON.load(file) if option.json
+
+  option.num ||= config["num"] || 10
+  option.type ||= config["type"] || :full
+  option.file ||= config["file"] || "~/.anzen-na-password-kanri"
 end
 
-option.num ||= config["num"] || 10
-option.type ||= config["type"] || :full
-option.file ||= config["file"] || "~/.anzen-na-password-kanri"
 opt = option.to_h
 opt.delete(:yaml)
 opt.delete(:json)
