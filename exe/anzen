@@ -73,4 +73,8 @@ opt.delete(:json)
 
 opt.delete_if{|_k, v| v.nil? }
 
-Anzen::Na::Password::Kanri.agent(command, opt)
+begin
+  Anzen::Na::Password::Kanri.agent(command, opt)
+rescue
+  puts subparts[command]
+end
