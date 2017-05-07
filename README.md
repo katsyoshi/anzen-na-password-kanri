@@ -26,13 +26,13 @@ Or install it yourself as:
 * generate password
 
 ```
-$ bundle exec exe/gen-pass -n 30
+$ bundle exec exe/anzen gen -n 30
 66IeVL9whrmDgt#qMzG)^ejagLmw+3~
 ```
 
 * check your password strength
 ```
-$ bundle exec exe/test-pass -p y0urP@ssw0Rd
+$ bundle exec exe/anzen kensa -p y0urP@ssw0Rd
 password: y0urP@ssw0Rd
 score: 0
 crack time: instant
