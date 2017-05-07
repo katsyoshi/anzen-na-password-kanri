@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Secure password generator and manager}
   spec.description   = %q{Secure password generate and manage for instance}
+  spec.license       = "MIT"
   spec.homepage      = "https://github.com/katsyoshi/anzen-na-password-kanri"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
