@@ -7,7 +7,7 @@ module Anzen
         module_function
 
         def generate(num:, type: :full)
-          (0..num.to_i).map{ pattern(type: type).sample }.join
+          Array.new(num.to_i){ pattern(type: type).sample }.join
         end
 
         def pattern(type: :basic)
