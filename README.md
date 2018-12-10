@@ -25,10 +25,19 @@ Or install it yourself as:
 
 * generate password
 
+use default characters
 ```
 $ bundle exec exe/anzen gen -n 30
 66IeVL9whrmDgt#qMzG)^ejagLmw+3~
 ```
+
+use only alphabet and number characters
+
+```
+$ bundle exec exe/anzen gen -n 30 -t basic
+i6ESjkkXFZSOUAF6bKntzI1xytfePf
+```
+
 
 * check your password strength
 ```
