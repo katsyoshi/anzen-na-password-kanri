@@ -10,7 +10,7 @@ module Anzen
           case command.to_sym
           when :gen
             opt.delete(:file)
-            puts Anzen::Na::Password::Generator.generate(opt)
+            puts Anzen::Na::Password::Generator.generate(**opt)
           when :hozon
             Anzen::Na::Password::Hozon.save(opt).each{|k, v| puts "#{k}: #{v}" }
           when :kensa
@@ -21,7 +21,7 @@ module Anzen
             puts "score: #{result.score}"
             puts "crack time: #{result.crack_time_display}"
           when :koshin
-            Anzen::Na::Password::Hozon.save(opt).each{|k, v| puts "#{k}: #{v}" }
+            Anzen::Na::Password::Hozon.save(**opt).each{|k, v| puts "#{k}: #{v}" }
           end
         end
       end
