@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 require "optparse"
 require "anzen-na-password-kanri"
-Option = Struct.new(:num, :type, :service, :password, :file, :yaml, :json, :user_inputs)
+Option = Struct.new(:num, :type, :service, :password, :file, :yaml, :json, :user_inputs, :display)
 option = Option.new
 option.type = :full
+option.display = false
 
 subparts = Hash.new do |_h, k|
   STDERR.puts "no such subcommand: #{k}"
@@ -17,6 +18,7 @@ file_path = nil
 subparts["gen"] = OptParse.new do |opt|
   opt.on("-n VALUE", "--num"){|v| option.num = v.to_i }
   opt.on("-t [VALUE]", "--type"){|v| option.type = v.to_sym }
+  opt.on("-d", "--display"){|v| option.display = true }
 
   opt.banner = "Usage: anzen gen [options]"
 end
