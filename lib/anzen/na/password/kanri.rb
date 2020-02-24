@@ -10,7 +10,7 @@ module Anzen
           case command.to_sym
           when :gen
             opt.delete(:file)
-            puts Anzen::Na::Password::Generator.generate(**opt)
+            puts Anzen::Na::Password::Generator.generate(num: opt[:num], type: opt[:type])
           when :hozon
             Anzen::Na::Password::Hozon.save(opt).each{|k, v| puts "#{k}: #{v}" }
           when :kensa
