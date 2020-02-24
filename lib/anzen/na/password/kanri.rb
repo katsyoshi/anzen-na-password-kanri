@@ -1,4 +1,5 @@
 require "anzen/na/password/kanri/version"
+require "clipboard"
 
 module Anzen
   module Na
@@ -10,7 +11,12 @@ module Anzen
           case command.to_sym
           when :gen
             opt.delete(:file)
-            puts Anzen::Na::Password::Generator.generate(num: opt[:num], type: opt[:type])
+            gen_pass = Anzen::Na::Password::Generator.generate(num: opt[:num], type: opt[:type])
+            if opt[:display]
+              puts gen_pass
+            else
+              Clipboard.copy(gen_pass)
+            end
           when :hozon
             Anzen::Na::Password::Hozon.save(opt).each{|k, v| puts "#{k}: #{v}" }
           when :kensa
