@@ -18,7 +18,14 @@ module Anzen
               Clipboard.copy(gen_pass)
             end
           when :hozon
-            Anzen::Na::Password::Hozon.save(opt).each{|k, v| puts "#{k}: #{v}" }
+            Anzen::Na::Password::Hozon.save(
+              num: opt[:num],
+              service: opt[:service],
+              account: opt[:account],
+              password: opt[:password],
+              type: opt[:type] || :full,
+              file: opt[:file] || "~/.anzen-na-password"
+            )
           when :kensa
             opt.delete(:file)
             raise if opt[:password].nil?

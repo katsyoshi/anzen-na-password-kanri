@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require "optparse"
 require "anzen-na-password-kanri"
-Option = Struct.new(:num, :type, :service, :password, :file, :yaml, :json, :user_inputs, :display)
+Option = Struct.new(:num, :type, :service, :account, :password, :file, :yaml, :json, :user_inputs, :display)
 option = Option.new
 option.type = :full
 option.display = false
