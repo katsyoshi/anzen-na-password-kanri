@@ -21,6 +21,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
+    - name: Install dependency packages
+      run: sudo apt install -y xsel
     - name: Install dependencies
       run: bundle install
     - name: Run tests
