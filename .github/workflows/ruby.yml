@@ -1,0 +1,29 @@
+name: Ruby
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: [ '2.7', 'head' ]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+    - name: Install dependency packages
+      run: sudo apt install -y xsel
+    - name: Install dependencies
+      run: bundle install
+    - name: Run tests
+      run: bundle exec rake test
